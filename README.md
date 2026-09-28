@@ -1,23 +1,16 @@
 # Generative Model Generalization: Split-Data GAN/VAE Course Project
 
-This is an ECE 695 course project, not a research paper. It explores a question
-motivated by a diffusion-model result presented by Kadkhodaie et al. at ICLR
-2024: if two models with the same architecture are trained independently on
-disjoint halves of a dataset, do they learn similar mappings from latent noise
-to images?
+This project compares how GANs and VAEs trained on separate parts of a dataset
+map the same latent input to images. The question was inspired by a diffusion
+model result presented by Kadkhodaie et al. at ICLR 2024.
 
-The project asks whether related behavior can be observed with GANs and VAEs.
-The notebook loads two models per architecture, supplies the same fixed latent
-inputs to both models, compares their generated outputs, and includes latent
-interpolations and nearest-training-image comparisons. It uses CelebA and
-MNIST. For CelebA, the split scripts use two disjoint 100,000-image
-subsets and leave 2,599 images unused. For MNIST, they use disjoint subsets of
-30,000 images each.
-
-These are qualitative, exploratory experiments. Similar-looking samples or
-high pixel-space cosine similarity do not by themselves establish
-generalization or rule out memorization. Treat the figures as course-project
-observations, not as a controlled replication or a publication-level result.
+The notebook loads two models of each architecture, feeds each pair the same
+fixed latent vectors, and compares their outputs. It also explores latent
+interpolations and nearest training images. The experiments use CelebA and
+MNIST. The CelebA scripts create two disjoint 100,000-image subsets, leaving
+2,599 images unused. The MNIST scripts use two disjoint 30,000-image subsets.
+Image comparisons are qualitative, with cosine similarity computed in pixel
+space.
 
 ## Example outputs
 
@@ -34,8 +27,7 @@ Corresponding VAE samples:
 | --- | --- |
 | ![VAE trained on CelebA split 1](assets/celeba_vae_split1.png) | ![VAE trained on CelebA split 2](assets/celeba_vae_split2.png) |
 
-The images are saved outputs from the project notebook. They are illustrative
-examples, not a quantitative summary.
+These sample grids were saved from the project notebook.
 
 ## Repository contents
 
@@ -70,11 +62,10 @@ download them automatically. If the CelebA mirror fails, the dataset files
 listed in the notebook can be obtained from the
 [CelebA dataset folder](https://drive.google.com/drive/folders/0B7EVK8r0v71pWEZsZE9oNnFzTm8?resourcekey=0-5BR16BdXnb8hVj6CNHKzLg).
 
-## Training from scratch
+## Training a model
 
-The standalone training scripts are historical, monolithic experiment
-scripts. Running one starts training immediately, with long runs configured
-for 200 epochs. They assume datasets are available and save checkpoints under
-`models/`. Create that directory first. Training the CelebA models is
-compute-intensive, and the scripts may need device settings adjusted for your
-hardware. The notebook is the easier way to inspect the saved results.
+Each standalone script starts training immediately and is configured for 200
+epochs. Create a `models/` directory first. The scripts expect the datasets to
+be available and save checkpoints there. CelebA runs can take substantial
+compute, so check the device settings in each script before starting. To
+inspect the saved results, use the notebook above.
