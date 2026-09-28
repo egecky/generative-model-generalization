@@ -12,6 +12,16 @@ MNIST. The CelebA scripts create two disjoint 100,000-image subsets, leaving
 Image comparisons are qualitative, with cosine similarity computed in pixel
 space.
 
+## Philosophical interpretation
+
+In the diffusion result that motivated this project, independently trained
+models began producing similar unseen faces as the training sets grew. One
+informal interpretation is that both models had learned what a celebrity face
+looks like. In geometric terms, they had learned similar mappings from latent
+space to the manifold of celebrity faces. At smaller sample sizes, matching
+outputs could instead reflect memorization. This project asks whether related
+behavior appears with GANs and VAEs.
+
 ## Example outputs
 
 CelebA samples from GANs trained on the two separate splits, generated from
